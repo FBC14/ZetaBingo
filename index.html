@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Bingo Bango Bongo</title>
+    <link rel="stylesheet" href="css/bingo.css">
+    <link rel="stylesheet" href="css/zeta.css">
+</head>
+<body>
+    
+    <div class="container">
+        <table id="bingo-table">
+            <thead>
+                <tr>
+                    <th>B</th>
+                    <th>I</th>
+                    <th>N</th>
+                    <th>G</th>
+                    <th>O</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1,1</td>
+                    <td>1,2</td>
+                    <td>1,3</td>
+                    <td>1,4</td>
+                    <td>1,5</td>
+                </tr>
+                <tr>
+                    <td>2,1</td>
+                    <td>2,2</td>
+                    <td>2,3</td>
+                    <td>2,4</td>
+                    <td>2,5</td>
+                </tr>
+                <tr>
+                    <td>3,1</td>
+                    <td>3,2</td>
+                    <td id="cell-center" class="active">CENTER</td>
+                    <td>3,4</td>
+                    <td>3,5</td>
+                </tr>
+                <tr>
+                    <td>4,1</td>
+                    <td>4,2</td>
+                    <td>4,3</td>
+                    <td>4,4</td>
+                    <td>4,5</td>
+                </tr>
+                <tr>
+                    <td>5,1</td>
+                    <td>5,2</td>
+                    <td>5,3</td>
+                    <td>5,4</td>
+                    <td>5,5</td>
+                </tr>
+                <tr>
+                    <th id="footer" colspan="5">
+                        <img id="footer-img" alt="Image"> 
+                    </th>
+                </tr>
+            </tbody>
+        </table>
+
+        <button onclick="resetBingo()">RESET</button>
+    </div>
+
+    <script src="js/jquery-3.3.1.js"></script>
+    <script src="js/zeta.js"></script>
+    <script src="js/bingo.js"></script>
+    <script src="js/yt-rss-reader.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function (){
+            initialize()
+            try{
+                document.getElementById('footer-img').src=imgSrc    
+            } catch(e){
+                console.warn('No image found')
+            }
+            
+            testXmlReader();
+
+        })
+    </script>
+</body>
+</html>

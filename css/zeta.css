@@ -1,0 +1,39 @@
+body{
+    background-color: #f2f3f8;
+}
+
+th.bingo{
+    color: #b8b9bd;
+}
+
+td:hover{
+    background-color: #ddd;
+}
+td.active:hover{
+    background-color: #DBDCE1;
+}
+
+td.active{
+    background-color: #b3b3b3;
+}
+td.checking{
+    background-color: yellow;
+}
+
+#cell-center.active{
+    background-image: url("../img/bazo_alt.png");
+}
+
+#cell-center{
+    background-image: url("../img/bazo.png");
+}
+
+button{
+    background-color: #98999e;
+    border-color: #DBDCE1; 
+    color: #000;
+}
+
+button:hover {
+  background-color: #DBDCE1;
+}
