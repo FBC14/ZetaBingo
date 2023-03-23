@@ -91,9 +91,40 @@ function writeBingo(total){
         alert("COMPLETE!!!")
     }else if(!alerted && total >= 5){
         alerted = true
-        alert("BINGO!!!")
+        for (var i = 0; i < cells.length; i++){
+            var cell = cells[i]
+            cell.onclick = null
+        }
+        startConfetti()
+        bingoAudio()
+        // alert("BINGO!!!")
     } else if(total < 5 && alerted){
         alerted = false
+    }
+}
+
+function cellAddOnClick(cell){
+    cell.onclick = null
+    cell.onclick = function(){
+            
+        var cellIndex = this.cellIndex
+        var rowIndex = this.parentNode.rowIndex -1
+        
+        write(rowIndex,cellIndex)
+        if(rowIndex === 2 && cellIndex === 2){
+            this.classList.add('active')
+        } else {
+            
+            if(matrix[rowIndex][cellIndex]){
+                this.classList.add('active')
+            } else {
+                this.classList.remove('active')
+            }
+        }
+
+        // console.log(checkNumOfBingo())
+        writeBingo(checkNumOfBingo())
+        
     }
 }
 
@@ -107,26 +138,7 @@ function initialize(){
             console.warn('No bingo template found')
         }
         
-        cell.onclick = function(){
-            
-            var cellIndex = this.cellIndex
-            var rowIndex = this.parentNode.rowIndex -1
-            
-            write(rowIndex,cellIndex)
-            if(rowIndex === 2 && cellIndex === 2){
-                this.classList.add('active')
-            } else {
-                
-                if(matrix[rowIndex][cellIndex]){
-                    this.classList.add('active')
-                } else {
-                    this.classList.remove('active')
-                }
-            }
-
-            writeBingo(checkNumOfBingo())
-            
-        }
+        cellAddOnClick(cell)
     }
 
 }
@@ -146,5 +158,15 @@ function resetBingo(){
         }
         headers[i].classList.remove('bingo')
     }
+    initialize()
+    stopConfetti()
     writeBingo(checkNumOfBingo())
+}
+
+function bingoAudio(){
+    let filenames = ["bingo.mp3","bingo2.mp3","bingo3.mp3","bingo4.mp3"]
+    let idx = Math.floor(Math.random() * filenames.length);
+
+    var audio = new Audio(`./audio/${filenames[idx]}`);
+    audio.play();
 }

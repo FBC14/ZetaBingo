@@ -9,7 +9,8 @@
     <link rel="stylesheet" href="css/zeta.css">
 </head>
 <body>
-    
+    <canvas id="confetti-canvas" style="position: fixed;display:block;z-index:999999;pointer-events:none;width:100%"></canvas>
+
     <div class="container">
         <table id="bingo-table">
             <thead>
@@ -69,9 +70,10 @@
     </div>
 
     <script src="js/jquery-3.3.1.js"></script>
+    <!-- Confetti.js from https://www.cssscript.com/confetti-falling-animation/ -->
+    <script src="js/confetti.js"></script> 
     <script src="js/zeta.js"></script>
     <script src="js/bingo.js"></script>
-    <script src="js/yt-rss-reader.js"></script>
     <script type="text/javascript">
         $(document).ready(function (){
             initialize()
@@ -80,9 +82,6 @@
             } catch(e){
                 console.warn('No image found')
             }
-            
-            testXmlReader();
-
         })
     </script>
 </body>
