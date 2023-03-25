@@ -50,12 +50,13 @@ function checkDiagonalBingo(){
 // function to check for bingo from all of cells
 function checkNumOfBingo(){
     let numOfBingo = 0
+    let b = [false,false]
     for(var i = 0; i < matrix.length; i++){
-        let b = checkBingo(i,i)
+        b = checkBingo(i,i)
         numOfBingo+= (1 * b[0]) + (1 * b[1])
     }
-    let b2 = checkDiagonalBingo()
-    numOfBingo+= (1 * b2[0]) + (1 * b2[1])
+    b = checkDiagonalBingo()
+    numOfBingo+= (1 * b[0]) + (1 * b[1])
     return numOfBingo
 }
 
