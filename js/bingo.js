@@ -196,10 +196,8 @@ function shuffle(array) {
 
     loop1:
     for (i=0;i<bingoData.length;i++){
-        console.log(`Checking (${i}) = ${bingoData[i]}`)
             if(bingoData[i] === ""){
                 freespaceCurrentLoc = [i]
-                console.log(`Found at (${i})`)
                 break loop1
             }
     }
