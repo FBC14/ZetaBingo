@@ -8,12 +8,27 @@ body{
     margin: 0 auto;
     padding: 30px;
     width: max-content;
+    min-width: 400px;
 }
 
 table{
     border-collapse: collapse;
     background-color: #fff;
     margin: 0 auto;
+}
+
+@media only screen and (max-width: 600px) {
+    /* your css of 640 px screen size */
+    body{
+        padding: 0px;
+        margin: 0px;
+    }
+    .container {
+        border: none;
+        width: 100%;
+        padding: 10px;
+        margin: 0;
+    }
 }
 
 th{
