@@ -130,6 +130,8 @@ function cellAddOnClick(cell){
 
 // Load data and add on click listener for each cells
 function initialize(){
+    shuffle(bingoData)
+    relocateFreeSpace()
     for (var i = 0; i < cells.length; i++){
         var cell = cells[i]
         try{
@@ -170,3 +172,38 @@ function bingoAudio(){
     var audio = new Audio(`./audio/${filenames[idx]}`);
     audio.play();
 }
+
+function shuffle(array) {
+    let currentIndex = array.length,  randomIndex;
+  
+    // While there remain elements to shuffle.
+    while (currentIndex != 0) {
+  
+      // Pick a remaining element.
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex--;
+  
+      // And swap it with the current element.
+      [array[currentIndex], array[randomIndex]] = [
+        array[randomIndex], array[currentIndex]];
+    }
+  
+    return array;
+  }
+
+  function relocateFreeSpace(){
+    let freespaceCurrentLoc = 0
+
+    loop1:
+    for (i=0;i<bingoData.length;i++){
+        console.log(`Checking (${i}) = ${bingoData[i]}`)
+            if(bingoData[i] === ""){
+                freespaceCurrentLoc = [i]
+                console.log(`Found at (${i})`)
+                break loop1
+            }
+    }
+
+    bingoData[freespaceCurrentLoc] = bingoData[12]
+    bingoData[12] = ""
+  }
