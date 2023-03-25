@@ -32,16 +32,15 @@ function checkBingo(posX,posY){
     return [trueX == 5,trueY ==5]
 }
 
+// check diagonals
 function checkDiagonalBingo(){
-    let mtx1 = [[0,0],[1,1],[2,2],[3,3],[4,4]]
-    let mtx2 = [[0,4],[1,3],[2,2],[3,1],[4,0]]
     let true1 = 0
     let true2 = 0
-    for(i=0;i<mtx1.length;i++){
-        if (matrix[mtx1[i][0]][mtx1[i][1]]){            
+    for(i=0;i<matrix.length;i++){
+        if (matrix[i][i]){            
             true1 += 1
         }
-        if (matrix[mtx2[i][0]][mtx2[i][1]]){
+        if (matrix[i][(i-4)*-1]){
             true2 += 1
         }
     }
@@ -53,10 +52,7 @@ function checkNumOfBingo(){
     let numOfBingo = 0
     for(var i = 0; i < matrix.length; i++){
         let b = checkBingo(i,i)
-        // console.log(b)
         numOfBingo+= (1 * b[0]) + (1 * b[1])
-        // console.log(`(1 * ${b[0]}) + (1 * ${b[1]})`)
-        // console.log(`Bingos: ${numOfBingo}`)
     }
     let b2 = checkDiagonalBingo()
     numOfBingo+= (1 * b2[0]) + (1 * b2[1])
@@ -91,10 +87,13 @@ function writeBingo(total){
         bingoAudio()
     }else if(!alerted && total >= 5){
         alerted = true
+        
+        // lock bingo boxes
         // for (var i = 0; i < cells.length; i++){
         //     var cell = cells[i]
         //     cell.onclick = null
         // }
+        
         startConfetti()
         bingoAudio()
         // alert("BINGO!!!")
@@ -103,6 +102,7 @@ function writeBingo(total){
     }
 }
 
+// add onclick listener
 function cellAddOnClick(cell){
     cell.onclick = null
     cell.onclick = function(){
@@ -122,7 +122,6 @@ function cellAddOnClick(cell){
             }
         }
 
-        // console.log(checkNumOfBingo())
         writeBingo(checkNumOfBingo())
         
     }
@@ -145,6 +144,7 @@ function initialize(){
 
 }
 
+// reset the bingo card
 function resetBingo(){
     let k = 0
     for(i = 0; i < matrix.length; i++){
@@ -165,6 +165,7 @@ function resetBingo(){
     writeBingo(checkNumOfBingo())
 }
 
+// play audio randomly
 function bingoAudio(){
     let filenames = ["bingo.mp3","bingo2.mp3","bingo3.mp3","bingo4.mp3"]
     let idx = Math.floor(Math.random() * filenames.length);
@@ -173,11 +174,12 @@ function bingoAudio(){
     audio.play();
 }
 
+// Shuffle array, algorithm taken from https://stackoverflow.com/a/2450976/12209523
 function shuffle(array) {
     let currentIndex = array.length,  randomIndex
   
     // While there remain elements to shuffle.
-    while (currentIndex != 0) {
+    while (currentIndex !== 0) {
   
       // Pick a remaining element.
       randomIndex = Math.floor(Math.random() * currentIndex)
@@ -188,10 +190,10 @@ function shuffle(array) {
         array[randomIndex], array[currentIndex]]
     }
   
-    return array
-  }
+}
 
-  function relocateFreeSpace(){
+// move freespace to the center in a shuffled array
+function relocateFreeSpace(){
     let freespaceCurrentLoc = 0
 
     loop1:
@@ -204,4 +206,4 @@ function shuffle(array) {
 
     bingoData[freespaceCurrentLoc] = bingoData[12]
     bingoData[12] = ""
-  }
+}
